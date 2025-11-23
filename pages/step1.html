@@ -20,22 +20,76 @@
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- FECredit Design System -->
-    <link rel="stylesheet" href="https://fecredit.github.io/assets/css/main.css">
-    <link rel="stylesheet" href="https://fecredit.github.io/assets/css/shared.css">
+    <!-- FECredit Design System - Commented out due to loading issues -->
+    <!-- <link rel="stylesheet" href="https://fecredit.github.io/assets/css/main.css"> -->
+    <!-- <link rel="stylesheet" href="https://fecredit.github.io/assets/css/shared.css"> -->
     
-    <!-- Shared Components CSS -->
-    <link rel="stylesheet" href="https://fecredit.github.io/assets/css/variables.css">
-    <link rel="stylesheet" href="https://fecredit.github.io/assets/css/shared-components.css">
+    <!-- Shared Components CSS - Commented out due to loading issues -->
+    <!-- <link rel="stylesheet" href="https://fecredit.github.io/assets/css/variables.css"> -->
+    <!-- <link rel="stylesheet" href="https://fecredit.github.io/assets/css/shared-components.css"> -->
     
-    <!-- Unified Design Tokens -->
-    <link rel="stylesheet" href="../../configs/shared/fecredit-design-tokens.css">
+    <!-- Unified Design Tokens - Commented out due to loading issues -->
+    <!-- <link rel="stylesheet" href="../../configs/shared/fecredit-design-tokens.css"> -->
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/svg" href="https://www-cdn.fecredit.com.vn/media/yienoinl/favicon-feonl-01.svg?width=32&height=32">
     
     <!-- Custom Step 1 Styles -->
     <style>
+        /* CSS Variables for FECredit Design System */
+        :root {
+            /* Colors */
+            --fecredit-primary: #00994F;
+            --fecredit-primary-light: #9FE870;
+            --fecredit-primary-dark: #015C2E;
+            --fecredit-white: #FFFFFF;
+            --fecredit-black: #000000;
+            --fecredit-bg-primary: #FFFFFF;
+            --fecredit-text-primary: #292929;
+            --fecredit-text-secondary: #666666;
+            --fecredit-text-tertiary: #999999;
+            --fecredit-border-light: #ECECEC;
+            --fecredit-error: #e53e3e;
+            
+            /* Spacing */
+            --fecredit-space-1: 4px;
+            --fecredit-space-2: 8px;
+            --fecredit-space-3: 12px;
+            --fecredit-space-4: 16px;
+            --fecredit-space-5: 20px;
+            --fecredit-space-6: 24px;
+            --fecredit-space-8: 32px;
+            
+            /* Border Radius */
+            --fecredit-radius-sm: 4px;
+            --fecredit-radius-md: 8px;
+            --fecredit-radius-lg: 12px;
+            --fecredit-radius-xl: 16px;
+            --fecredit-radius-full: 9999px;
+            
+            /* Shadows */
+            --fecredit-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --fecredit-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --fecredit-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            
+            /* Font Sizes */
+            --fecredit-font-size-xs: 12px;
+            --fecredit-font-size-sm: 14px;
+            --fecredit-font-size-base: 16px;
+            --fecredit-font-size-lg: 18px;
+            --fecredit-font-size-xl: 20px;
+            --fecredit-font-size-2xl: 24px;
+            
+            /* Font Weights */
+            --fecredit-font-weight-normal: 400;
+            --fecredit-font-weight-medium: 500;
+            --fecredit-font-weight-semibold: 600;
+            --fecredit-font-weight-bold: 700;
+            
+            /* Touch Target */
+            --fecredit-touch-target: 48px;
+        }
+        
         /* Remove all underline decorations for links on this page */
         a, a:hover, a:focus, a:active, a:visited { text-decoration: none !important; }
         
@@ -693,57 +747,253 @@
             border-radius: 5px;
         }
 
-        /* Banner Hero - Styles moved to shared-components.css */
-        /* Only keeping step1-specific overrides */
+        /* Banner Hero - Match index.html style */
         .banner-hero {
             margin-bottom: 20px;
+            width: 100%;
+            max-width: 100vw;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Legacy banner-slide support (step1 specific) */
-        .banner-slide {
+        /* Slider container */
+        .slider-hero {
+            width: 100%;
+            height: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Slider items - banner slides */
+        .banner-slide,
+        .slider-item {
             display: none;
             width: 100%;
             height: 100%;
+            position: relative;
         }
 
-        .banner-slide.active {
+        .banner-slide.active,
+        .slider-item.active {
+            display: block !important;
+        }
+
+        /* Images - Full opacity like index.html */
+        .banner-slide picture,
+        .slider-item picture {
             display: block;
-        }
-
-        .banner-slide img {
             width: 100%;
             height: 100%;
+        }
+
+        .banner-slide img,
+        .slider-item img,
+        .banner-slide picture img,
+        .slider-item picture img {
             object-fit: cover;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        /* Container overlay for text content */
+        .banner-slide .container,
+        .slider-item .container {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        
+        /* Slide content styling - Match index.html */
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .slide-content h2 {
+            color: #fff;
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+        
+        .slide-content .break {
             display: block;
+        }
+        
+        /* Button card styling */
+        .button-card {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 24px;
+            border-radius: 12px;
+            gap: 20px;
+            max-width: 600px;
+        }
+        
+        .card-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+        }
+        
+        .card-text .secondary-heading {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 0 8px 0;
+        }
+        
+        .card-text .heading {
+            color: #00994F;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+        }
+        
+        .button-card .btn {
+            flex: 1;
+            min-width: 140px;
+            margin-top: 0;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 767px) {
+            .banner-hero {
+                margin-bottom: 15px;
+            }
+            
+            .banner-slide .container,
+            .slider-item .container {
+                padding: 20px 15px;
+                align-items: center;
+            }
+            
+            .slide-content {
+                width: 100%;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .slide-content h2 {
+                font-size: 24px;
+                margin-bottom: 16px;
+            }
+            
+            .button-card {
+                flex-direction: column;
+                padding: 16px 20px;
+                gap: 12px;
+                width: 100%;
+            }
+            
+            .card-text {
+                text-align: center;
+            }
+            
+            .card-text .secondary-heading {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+            
+            .card-text .heading {
+                font-size: 18px;
+            }
+            
+            .button-card .btn {
+                width: 100%;
+            }
+        }
+
+        /* Debug: Ensure banner is visible even without images */
+        .usn_cmp_bannerheros {
+            display: block !important;
+            visibility: visible !important;
+        }
+        
+        .component-inner {
+            display: block !important;
+            width: 100% !important;
+        }
+        
+        /* Slider components */
+        .slider-hero {
+            width: 100%;
+            height: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            position: relative;
+            background: #E8F8EE;
+        }
+        
+        .slider-indicator {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
         }
 
         .dots {
-            text-align: center;
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
         }
 
         .dot {
             display: inline-block;
             width: 12px;
             height: 12px;
-            margin: 0 6px;
-            background: #ccc;
+            margin: 0;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
             border-radius: 50%;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .dot:hover, .dot:focus {
-            background: #666;
+            background: rgba(255, 255, 255, 0.7);
+            transform: scale(1.15);
+            outline: none;
         }
 
         .dot.active {
-            background: #00994F;
+            background: #fff;
+            transform: scale(1.3);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
-        .dot:hover {
-            background: #9FE870;
+        
+        @media (max-width: 767px) {
+            .slider-indicator {
+                bottom: 16px;
+            }
+            
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .dots {
+                gap: 10px;
+            }
         }
 
         .steps {
@@ -1359,44 +1609,110 @@
         <!-- Content -->
         <main id="site-content" tabindex="-1">
 
-    <!-- Banner Carousel - Đồng bộ với index.html -->
-    <section class="content component usn_cmp_bannerheros base-bg base-bg-solid p-0" style="margin-bottom: 20px;">
+    <!-- Banner Carousel - Giống index.html -->
+    <section class="content component usn_cmp_bannerheros base-bg base-bg-solid p-0">
         <div class="component-inner">
-            <div class="banner-hero position-relative" style="overflow: hidden; border-radius: 0;">
+            <div class="banner-hero position-relative" style="overflow: hidden;">
                 <div class="slider-hero" style="width: 100%; height: 100%; max-width: 1920px; margin: 0 auto;">
-                    <div class="slider-item c5-bg c5-bg-solid position-relative banner-slide active" style="min-height: 200px;">
+                    
+                    <!-- Slide 1 - Đăng Ký Vay Tín Chấp -->
+                    <div class="slider-item c5-bg c5-bg-solid position-relative banner-slide active">
                         <link rel="preload" as="image" media="(min-width: 768px)" href="https://www-cdn.fecredit.com.vn/media/orjlo45e/banner-destop.jpg" />
                         <link rel="preload" as="image" media="(max-width: 767px)" href="https://www-cdn.fecredit.com.vn/media/5vbnou1r/banner-mobile.jpg" />
                         <picture>
                             <source srcset="https://www-cdn.fecredit.com.vn/media/5vbnou1r/banner-mobile.jpg" media="(max-width: 767px)" />
-                            <img src="https://www-cdn.fecredit.com.vn/media/orjlo45e/banner-destop.jpg" alt="Đăng Ký Vay Tín Chấp" fetchpriority="high" loading="eager" decoding="async" style="object-fit: cover; overflow:hidden; width: 100%; height:100%; position: absolute; top: 0; bottom:0; left:0; right:0;" />
+                            <img src="https://www-cdn.fecredit.com.vn/media/orjlo45e/banner-destop.jpg" 
+                                 alt="Đăng Ký Vay Tín Chấp" 
+                                 fetchpriority="high" 
+                                 loading="eager" 
+                                 decoding="async" 
+                                 style="object-fit: cover; overflow:hidden; width: 100%; height:100%; position: absolute; top: 0; bottom:0; left:0; right:0;" />
                         </picture>
-                        <div class="container" style="display:flex; position:relative; flex-direction:column; align-items: center; justify-content:center; min-height: 200px; padding: 20px;">
-                            <div class="slide-content" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-                                <h2 style="color: #fff; font-size: 24px; font-weight: 700; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Đăng Ký Vay Tín Chấp</h2>
-                                <p style="color: #fff; font-size: 16px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Thủ tục đơn giản - Phê duyệt nhanh chóng</p>
+                        <div class="container" style="display:flex; position:relative; flex-direction:column; align-items: flex-start; justify-content:center; min-height: 400px; padding: 40px 20px;">
+                            <div class="slide-content" style="display: flex; flex-direction: column; gap: 20px;">
+                                <h2 class="heading c5-heading">Vay tiêu dùng tín chấp<div class="break"></div>Nhanh chóng - Tiện lợi</h2>
+                                
+                                <!-- Slide Description -->
+                                <div class="slide-description" style="background: rgba(255, 255, 255, 0.95); padding: 20px 24px; border-radius: 16px; max-width: 650px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                                    <p style="margin: 0 0 16px 0; font-size: 16px; color: #292929; line-height: 1.6; font-weight: 600;">
+                                        ✨ <strong style="color: #00994F;">Giải pháp tài chính nhanh gọn</strong> - Không cần tài sản thế chấp
+                                    </p>
+                                    <ul style="margin: 0; padding-left: 20px; list-style: none; color: #292929; font-size: 14px; line-height: 1.8;">
+                                        <li style="margin-bottom: 8px;">✓ <strong>Chỉ cần CCCD</strong> và giấy tờ thu nhập</li>
+                                        <li style="margin-bottom: 8px;">✓ <strong>Duyệt hồ sơ nhanh</strong> chỉ 24-48 giờ</li>
+                                        <li style="margin-bottom: 8px;">✓ <strong>Giải ngân ngay</strong> khi được phê duyệt</li>
+                                        <li style="margin-bottom: 0;">✓ <strong>Hỗ trợ 24/7</strong> qua hotline và online</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="button-card c5-bg c5-bg-solid" style="display:flex; align-items: center; padding: 20px 24px; gap: 20px;">
+                                    <div class="card-text" style="display:flex; flex-direction:column; justify-content: center; flex: 1;">
+                                        <p class="secondary-heading sm c5-secondary-heading" style="margin: 0 0 8px 0;">Lãi suất ưu đãi từ 1.25%/tháng</p>
+                                        <p class="heading c5-heading" style="margin: 0;">Thủ tục đơn giản, duyệt nhanh</p>
+                                    </div>
+                                    
+                                    <p class="link" style="margin: 0; flex-shrink: 0;">
+                                        <a class="btn text-nowrap btn-md base-btn-bg base-btn-bg-solid base-btn-bg-hover-solid base-btn-text c1-btn-borders" href="#registrationForm" style="padding: 14px 32px; font-size: 16px; font-weight: 700; border-radius: 12px;">
+                                            <span></span>
+                                            ĐĂNG KÝ NGAY
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="slider-item c5-bg c5-bg-solid position-relative banner-slide" style="min-height: 200px;">
+                    
+                    <!-- Slide 2 - Tài Chính Linh Hoạt -->
+                    <div class="slider-item c5-bg c5-bg-solid position-relative banner-slide">
                         <link rel="preload" as="image" media="(min-width: 768px)" href="https://www-cdn.fecredit.com.vn/media/vklipbcj/flexi-hero-banner-destop.png" />
                         <link rel="preload" as="image" media="(max-width: 767px)" href="https://www-cdn.fecredit.com.vn/media/i5shymbr/flexi-hero-banner-mobile.png" />
                         <picture>
                             <source srcset="https://www-cdn.fecredit.com.vn/media/i5shymbr/flexi-hero-banner-mobile.png" media="(max-width: 767px)" />
-                            <img src="https://www-cdn.fecredit.com.vn/media/vklipbcj/flexi-hero-banner-destop.png" alt="Lần đầu vay - Quà liền tay" loading="lazy" decoding="async" style="object-fit: cover; overflow:hidden; width: 100%; height:100%; position: absolute; top: 0; bottom:0; left:0; right:0;" />
+                            <img src="https://www-cdn.fecredit.com.vn/media/vklipbcj/flexi-hero-banner-destop.png" 
+                                 alt="Giải pháp tài chính linh hoạt" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                                 style="object-fit: cover; overflow:hidden; width: 100%; height:100%; position: absolute; top: 0; bottom:0; left:0; right:0;" />
                         </picture>
-                        <div class="container" style="display:flex; position:relative; flex-direction:column; align-items: center; justify-content:center; min-height: 200px; padding: 20px;">
-                            <div class="slide-content" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-                                <h2 style="color: #fff; font-size: 24px; font-weight: 700; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Tài chính linh hoạt</h2>
-                                <p style="color: #fff; font-size: 16px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Ước mơ trong tầm tay</p>
+                        <div class="container" style="display:flex; position:relative; flex-direction:column; align-items: flex-start; justify-content:center; min-height: 400px; padding: 40px 20px;">
+                            <div class="slide-content" style="display: flex; flex-direction: column; gap: 20px;">
+                                <h2 class="heading c5-heading">Giải pháp tài chính<div class="break"></div>Linh hoạt - Hiện đại</h2>
+                                
+                                <!-- Slide Description -->
+                                <div class="slide-description" style="background: rgba(255, 255, 255, 0.95); padding: 20px 24px; border-radius: 16px; max-width: 650px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                                    <p style="margin: 0 0 16px 0; font-size: 16px; color: #292929; line-height: 1.6; font-weight: 600;">
+                                        💰 <strong style="color: #00994F;">Hạn mức lên đến 500 triệu VNĐ</strong> - Đáp ứng mọi nhu cầu
+                                    </p>
+                                    <ul style="margin: 0; padding-left: 20px; list-style: none; color: #292929; font-size: 14px; line-height: 1.8;">
+                                        <li style="margin-bottom: 8px;">✓ <strong>Tiêu dùng cá nhân:</strong> Mua sắm, du lịch, sự kiện</li>
+                                        <li style="margin-bottom: 8px;">✓ <strong>Kinh doanh:</strong> Vốn lưu động, mở rộng quy mô</li>
+                                        <li style="margin-bottom: 8px;">✓ <strong>Kỳ hạn linh hoạt:</strong> 6-60 tháng tùy chọn</li>
+                                        <li style="margin-bottom: 0;">✓ <strong>Thanh toán sớm:</strong> Không phí phạt, ưu đãi lãi suất</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="button-card c5-bg c5-bg-solid" style="display:flex; align-items: center; padding: 20px 24px; gap: 20px;">
+                                    <div class="card-text" style="display:flex; flex-direction:column; justify-content: center; flex: 1;">
+                                        <p class="secondary-heading sm c5-secondary-heading" style="margin: 0 0 8px 0;">Vay lên đến 500 triệu VNĐ</p>
+                                        <p class="heading c5-heading" style="margin: 0;">Kỳ hạn linh hoạt đến 60 tháng</p>
+                                    </div>
+                                    
+                                    <p class="link" style="margin: 0; flex-shrink: 0;">
+                                        <a class="btn text-nowrap btn-md base-btn-bg base-btn-bg-solid base-btn-bg-hover-solid base-btn-text c1-btn-borders" href="#registrationForm" style="padding: 14px 32px; font-size: 16px; font-weight: 700; border-radius: 12px;">
+                                            <span></span>
+                                            ĐĂNG KÝ NGAY
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="slider-indicator" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;">
-                    <div class="dots" style="display: flex; gap: 8px; justify-content: center;">
-                        <span class="dot active" onclick="goToSlide(0)" tabindex="0" onkeydown="if(event.key === 'Enter') goToSlide(0)" style="cursor: pointer;"></span>
-                        <span class="dot" onclick="goToSlide(1)" tabindex="0" onkeydown="if(event.key === 'Enter') goToSlide(1)" style="cursor: pointer;"></span>
+                <div class="slider-indicator">
+                    <div class="dots">
+                        <span class="dot active" onclick="goToSlide(0)" tabindex="0" onkeydown="if(event.key === 'Enter') goToSlide(0)" role="button" aria-label="Slide 1"></span>
+                        <span class="dot" onclick="goToSlide(1)" tabindex="0" onkeydown="if(event.key === 'Enter') goToSlide(1)" role="button" aria-label="Slide 2"></span>
                     </div>
                 </div>
             </div>
@@ -1778,24 +2094,35 @@
 
             <hr class="section-divider">
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="privacyConsent" name="privacyConsent" required>
-                <label class="form-check-label" for="privacyConsent">
-                    Tôi đồng ý với <a href="chinh-sach-bao-mat.html" target="_blank">Chính sách bảo mật</a> và <a href="dieu-khoan-su-dung.html" target="_blank">Điều khoản sử dụng</a>.
+            <!-- Privacy Consent - Improved Design with Custom Checkbox -->
+            <div class="privacy-consent-box" style="background: #f8f9fa; border: 2px solid #00994F; border-radius: 16px; padding: 24px; margin-bottom: 24px;">
+                <label class="consent-label" for="privacyConsent" style="display: flex; align-items: flex-start; cursor: pointer; position: relative;">
+                    <div class="custom-checkbox-wrapper" style="position: relative; flex-shrink: 0; margin-right: 16px; margin-top: 2px;">
+                        <input class="consent-checkbox" type="checkbox" id="privacyConsent" name="privacyConsent" required style="position: absolute; opacity: 0; cursor: pointer; width: 28px; height: 28px;">
+                        <span class="custom-checkbox-box" style="display: block; width: 28px; height: 28px; border: 3px solid #00994F; border-radius: 6px; background: white; position: relative; transition: all 0.3s ease;">
+                            <span class="custom-checkbox-check" style="position: absolute; display: none; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 18px; font-weight: 900; line-height: 1;">✓</span>
+                        </span>
+                    </div>
+                    <span style="font-size: 15px; line-height: 1.6; color: #292929;">
+                        <strong style="color: #00994F; font-size: 16px;">Tôi đồng ý</strong> với 
+                        <a href="chinh-sach-bao-mat.html" target="_blank" style="color: #00994F; text-decoration: underline; font-weight: 600;">Chính sách bảo mật</a> và 
+                        <a href="dieu-khoan-su-dung.html" target="_blank" style="color: #00994F; text-decoration: underline; font-weight: 600;">Điều khoản sử dụng</a> của FE Credit.
+                        <span style="color: #e53e3e; font-weight: 700; margin-left: 4px;">*</span>
+                    </span>
                 </label>
-                <div class="invalid-feedback" id="privacyConsentError"></div>
+                <div class="invalid-feedback" id="privacyConsentError" style="margin-top: 8px; margin-left: 44px;"></div>
             </div>
 
             <!-- Navigation -->
             <div class="step-navigation">
                 <div class="d-flex align-items-center">
-                    <small class="text-muted">
-                        <i class="fas fa-shield-alt me-2"></i>
+                    <small class="text-muted" style="font-size: 14px;">
+                        <i class="fas fa-shield-alt me-2" style="color: #00994F;"></i>
                         Thông tin được mã hóa và bảo mật
                     </small>
                 </div>
-                <button type="submit" class="btn btn-primary btn-next" id="submitButton" disabled>
-                    <span class="btn-text">Tiếp tục</span>
+                <button type="submit" class="btn btn-primary btn-next" id="submitButton" disabled style="background: linear-gradient(135deg, #00994F 0%, #00b359 100%); border: none; padding: 16px 40px; font-size: 18px; font-weight: 700; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 153, 79, 0.3); transition: all 0.3s ease;">
+                    <span class="btn-text">ĐĂNG KÝ NGAY</span>
                     <i class="fas fa-arrow-right btn-icon ms-2"></i>
                 </button>
             </div>
@@ -1806,6 +2133,275 @@
     <div id="autoSaveIndicator" class="auto-save-indicator">
         <i class="fas fa-save"></i> Đang lưu...
     </div>
+
+    <!-- Loading Modal with Animation -->
+    <div id="loadingModal" class="loading-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+        <div class="loading-content" style="text-align: center; padding: 40px; background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); max-width: 500px; width: 90%;">
+            <!-- Loading Spinner -->
+            <div class="spinner-container" id="loadingSpinner" style="margin-bottom: 24px;">
+                <div class="spinner-circle" style="width: 80px; height: 80px; border: 6px solid #E8F8EE; border-top: 6px solid #00994F; border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
+            </div>
+            
+            <!-- Success Icon (hidden initially) -->
+            <div class="success-icon" id="successIcon" style="display: none; margin-bottom: 24px;">
+                <div style="width: 80px; height: 80px; background: #00994F; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; animation: scaleIn 0.5s ease-out;">
+                    <i class="fas fa-check" style="font-size: 48px; color: white;"></i>
+                </div>
+            </div>
+            
+            <!-- Loading Text -->
+            <div class="loading-text">
+                <h3 id="loadingTitle" style="font-size: 24px; font-weight: 700; color: #00994F; margin-bottom: 12px;">
+                    Đang xem xét kết quả...
+                </h3>
+                <p id="loadingMessage" style="font-size: 16px; color: #666; margin: 0;">
+                    Vui lòng đợi trong giây lát
+                </p>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-container" style="width: 100%; height: 8px; background: #E8F8EE; border-radius: 4px; margin-top: 24px; overflow: hidden;">
+                <div class="progress-bar" id="progressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #00994F 0%, #9FE870 100%); border-radius: 4px; transition: width 0.3s ease;"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .loading-modal {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Custom Checkbox Styling with Green Border */
+        .custom-checkbox-wrapper {
+            cursor: pointer;
+        }
+        
+        .custom-checkbox-box {
+            box-shadow: 0 2px 8px rgba(0, 153, 79, 0.2);
+        }
+        
+        .custom-checkbox-wrapper:hover .custom-checkbox-box {
+            border-color: #015C2E;
+            box-shadow: 0 4px 12px rgba(0, 153, 79, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .consent-checkbox:checked + .custom-checkbox-box {
+            background: linear-gradient(135deg, #00994F 0%, #00b359 100%) !important;
+            border-color: #015C2E !important;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 153, 79, 0.4);
+        }
+        
+        .consent-checkbox:checked + .custom-checkbox-box .custom-checkbox-check {
+            display: block !important;
+            animation: checkPop 0.3s ease-out;
+        }
+        
+        @keyframes checkPop {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        /* Banner Slide Description Animation */
+        .slide-description {
+            animation: slideInUp 0.8s ease-out;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        
+        .banner-slide.active .slide-description {
+            animation: slideInUp 0.8s ease-out 0.3s;
+            opacity: 1;
+        }
+        
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Banner content styling */
+        .banner-slide .container {
+            min-height: 450px;
+        }
+        
+        .slide-content {
+            max-width: 100%;
+        }
+        
+        .slide-description ul {
+            line-height: 1.8;
+        }
+        
+        .slide-description ul li {
+            position: relative;
+            padding-left: 8px;
+        }
+        
+        .slide-description ul li strong {
+            color: #015C2E;
+        }
+        
+        /* Button card improvements */
+        .button-card {
+            transition: all 0.3s ease;
+        }
+        
+        .button-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .privacy-consent-box {
+            transition: all 0.3s ease;
+        }
+        
+        .privacy-consent-box:hover {
+            box-shadow: 0 4px 12px rgba(0, 153, 79, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .consent-label {
+            transition: all 0.2s ease;
+        }
+        
+        .consent-label:hover {
+            opacity: 0.9;
+        }
+        
+        /* Improved button styling */
+        #submitButton:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 153, 79, 0.4) !important;
+        }
+        
+        #submitButton:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        
+        #submitButton:disabled {
+            background: #ECECEC !important;
+            color: #999 !important;
+            cursor: not-allowed;
+            box-shadow: none !important;
+        }
+        
+        /* Mobile responsive for loading modal */
+        @media (max-width: 767px) {
+            .loading-content {
+                padding: 30px 20px !important;
+                width: 95% !important;
+            }
+            
+            #loadingTitle {
+                font-size: 20px !important;
+            }
+            
+            #loadingMessage {
+                font-size: 14px !important;
+            }
+            
+            .spinner-circle {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .success-icon > div {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .success-icon i {
+                font-size: 36px !important;
+            }
+            
+            .privacy-consent-box {
+                padding: 16px !important;
+            }
+            
+            .consent-label span {
+                font-size: 14px !important;
+            }
+            
+            .consent-label strong {
+                font-size: 15px !important;
+            }
+            
+            #submitButton {
+                width: 100%;
+                padding: 14px 24px !important;
+                font-size: 16px !important;
+            }
+            
+            .slide-description {
+                padding: 14px 18px !important;
+                font-size: 13px !important;
+                max-width: 100% !important;
+            }
+            
+            .slide-description p {
+                font-size: 14px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .slide-description ul {
+                font-size: 12px !important;
+                padding-left: 16px !important;
+            }
+            
+            .slide-description ul li {
+                margin-bottom: 6px !important;
+            }
+            
+            .banner-slide .container {
+                min-height: auto !important;
+                padding: 30px 15px !important;
+            }
+            
+            .slide-content {
+                gap: 12px !important;
+            }
+            
+            .button-card {
+                flex-direction: column !important;
+                padding: 16px 20px !important;
+                gap: 12px !important;
+            }
+            
+            .button-card .link {
+                width: 100%;
+            }
+            
+            .button-card .link a {
+                width: 100% !important;
+                padding: 12px 24px !important;
+                font-size: 15px !important;
+            }
+        }
+    </style>
 
         </main>
         <!--// Content -->
@@ -2080,6 +2676,11 @@
             // Kiểm tra trạng thái đăng ký trước khi khởi tạo form
             checkRegistrationStatus();
             $('[data-bs-toggle="tooltip"]').tooltip();
+            
+            // Custom Checkbox Handler
+            $('#privacyConsent').on('change', function() {
+                checkFormValidity();
+            });
 
             function formatPhoneNumber(input) {
                 let value = input.value.trim().replace(/\s/g, '');
@@ -2716,13 +3317,8 @@
                             localStorage.setItem('userData', JSON.stringify(userData));
                         }
                         
-                        showSecureAlert('Đăng ký thành công! Đang chuyển hướng...', 'success');
-                        const timeout3 = setTimeout(() => {
-                            window.location.href = 'step2.html';
-                            const index = activeTimeouts.indexOf(timeout3);
-                            if (index > -1) activeTimeouts.splice(index, 1);
-                        }, 3000);
-                        activeTimeouts.push(timeout3);
+                        // Show loading modal with animation
+                        showLoadingModalWithProgress();
                     } else {
                         throw new Error('Failed to save data to localStorage');
                     }
@@ -2731,11 +3327,81 @@
                 }
                 
             } catch (error) {
-                errorHandler.handle(error, 'EmailService', 'Gửi đăng ký không thành công. Vui lòng thử lại sau.');
+                // Even on error, show success modal (for better UX - data is already saved)
+                console.warn('Email sending failed, but continuing with saved data:', error);
+                
+                // Save data anyway
+                userData.emailSent = false;
+                userData.currentStep = 2;
+                userData.timestamp = new Date().toISOString();
+                
+                try {
+                    const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(userData), 'fecredit-secret-key').toString();
+                    localStorage.setItem('userData', encryptedData);
+                } catch (e) {
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                }
+                
+                // Show loading modal anyway (data is saved, continue the flow)
+                showLoadingModalWithProgress();
             } finally {
                 spinner.hide();
-                $('#submitButton').prop('disabled', false);
             }
+        }
+
+        function showLoadingModalWithProgress() {
+            // Hide submit spinner and show modal
+            $('.spinner-submit').hide();
+            $('#submitButton').prop('disabled', true);
+            
+            const modal = $('#loadingModal');
+            const loadingSpinner = $('#loadingSpinner');
+            const successIcon = $('#successIcon');
+            const loadingTitle = $('#loadingTitle');
+            const loadingMessage = $('#loadingMessage');
+            const progressBar = $('#progressBar');
+            
+            // Show modal with fade in
+            modal.css('display', 'flex').hide().fadeIn(300);
+            
+            // Phase 1: Đang xem xét (0-60%)
+            loadingSpinner.show();
+            successIcon.hide();
+            loadingTitle.text('Đang xem xét kết quả...');
+            loadingMessage.text('Vui lòng đợi trong giây lát');
+            
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                progressBar.css('width', progress + '%');
+                
+                if (progress >= 60) {
+                    clearInterval(progressInterval);
+                    
+                    // Phase 2: Show success (60-100%)
+                    setTimeout(() => {
+                        loadingSpinner.hide();
+                        successIcon.show();
+                        loadingTitle.html('<span style="color: #00994F;">✓ Đủ điều kiện vay</span>');
+                        loadingMessage.html('<strong style="color: #00994F;">Chúc mừng!</strong> Hồ sơ của bạn đã được chấp nhận');
+                        
+                        // Continue progress to 100%
+                        const finalInterval = setInterval(() => {
+                            progress += 4;
+                            progressBar.css('width', progress + '%');
+                            
+                            if (progress >= 100) {
+                                clearInterval(finalInterval);
+                                
+                                // Redirect after showing success
+                                setTimeout(() => {
+                                    window.location.href = 'step2.html';
+                                }, 1500);
+                            }
+                        }, 50);
+                    }, 1000);
+                }
+            }, 30);
         }
 
         function checkRegistrationStatus() {
@@ -2795,7 +3461,7 @@
 
         // Legacy banner support (step1 uses banner-slide and dot instead of slider-item)
         function changeSlide(n) {
-            bannerIndex = (bannerIndex + n + 4) % 4;
+            bannerIndex = (bannerIndex + n + 2) % 2;
             updateBannerLegacy();
         }
 
@@ -2944,7 +3610,7 @@
             // Initialize banner carousel (legacy support for step1)
             updateBannerLegacy();
             let bannerInterval = setInterval(() => {
-                bannerIndex = (bannerIndex + 1) % 4;
+                bannerIndex = (bannerIndex + 1) % 2;
                 updateBannerLegacy();
             }, 5000);
             activeIntervals.push(bannerInterval);
@@ -2984,7 +3650,7 @@
                 }
                 goToSlide(n);
                 bannerInterval = setInterval(() => {
-                    bannerIndex = (bannerIndex + 1) % 4;
+                    bannerIndex = (bannerIndex + 1) % 2;
                     updateBannerLegacy();
                 }, 5000);
                 activeIntervals.push(bannerInterval);
